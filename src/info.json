@@ -1,0 +1,49 @@
+[
+	{
+		"nombre": "Nahuel",
+		"apellido": "Rodriguez",
+		"edad": 21,
+		"curso": "Backend",
+		"id": 1,
+		"description": "Actualizado",
+		"price": 600,
+		"stock": 60
+	},
+	{
+		"nombre": "Esteban",
+		"apellido": "Caputo",
+		"edad": 26,
+		"curso": "Backend",
+		"id": 2
+	},
+	{
+		"nombre": "Mauricio",
+		"apellido": "Espinosa",
+		"edad": 26,
+		"curso": "Backend",
+		"id": 3
+	},
+	{
+		"nombre": "Joaquin",
+		"apellido": "Alfonsin",
+		"edad": 40,
+		"curso": "Backend",
+		"id": 4
+	},
+	{
+		"nombre": "Emiliano",
+		"apellido": "Alfonsin",
+		"edad": 40,
+		"curso": "Backend",
+		"id": 5
+	},
+	{
+		"title": "Juan",
+		"description": "Actualizadisiiimoooooo",
+		"price": 600,
+		"thumbnail": "Sin Imagen",
+		"code": "dh161",
+		"stock": 60,
+		"id": 6
+	}
+]
