@@ -3,13 +3,14 @@ import fs  from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
 
-export const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 export class ManagerUsuarios {
-    constructor(PATH,title, description, price, thumbnail, code, stock) {
-        this.PATH = path.resolve(__dirname, 'info.json');
+    constructor(title, description, price, thumbnail, code, stock) {
+        this.path = path.resolve(__dirname, 'info.json');
         this.title = title;
         this.description = description;
         this.price = price;
@@ -23,7 +24,7 @@ export class ManagerUsuarios {
 //----------------------------------- OBTENER PRODUCTOS ----------------//
     getProducts = async () => {
         try{
-            const data = await fs.promises.readFile(this.PATH, 'utf-8');
+            const data = await fs.promises.readFile(this.path, 'utf-8');
             const usuariosParseados = JSON.parse(data);
             return usuariosParseados;
         }catch(error){
@@ -39,7 +40,7 @@ export class ManagerUsuarios {
             this.generarId(product, products);
             products.push(product);
             
-            await fs.promises.writeFile(this.PATH, JSON.stringify(products, null, '\t'));//evito scroll horizontal en json
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));//evito scroll horizontal en json
             return product;
         }catch(error){
             console.log(`Error, no se puede agregar producto ${error.message}`);
@@ -55,7 +56,7 @@ export class ManagerUsuarios {
             
             if (index !== -1) {// Si se encuentra, eliminar el producto del array
                 products.splice(index, 1);
-                await fs.promises.writeFile(this.PATH, JSON.stringify(products, null, '\t'));            // Guardar la lista actualizada en el archivo
+                await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));            // Guardar la lista actualizada en el archivo
                 console.log(`Producto con ID ${productId} eliminado correctamente.`);
                 
             } else {
@@ -95,7 +96,7 @@ export class ManagerUsuarios {
                 // Actualizar los campos especificados en updatedFields
                 Object.assign(products[index], updatedFields);
                 
-                await fs.promises.writeFile(this.PATH, JSON.stringify(products, null, '\t'));
+                await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
                 console.log(`Producto con ID ${productId} actualizado correctamente.`);
                 return true;
             } else {
@@ -144,9 +145,9 @@ await products.getProductById(4);
 
 /////ACTUALIZAR PRODUCTO BY ID////////////////////////////////////////////////
   
-await products.updateProduct(6, {
+/* await products.updateProduct(6, {
     description: 'Actualizadisiiimoooooo',
     price: 600,
     stock: 60
-}); 
+});  */
 
