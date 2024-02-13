@@ -19,28 +19,25 @@ const productosLeidos = managerUsuarios.getProducts();
 // /////////////ENDPOINT PARA VER PRODUCTOS///////////
 app.get('/products', async (req, res) => {
 
-        const limit = req.query.limit;
-        const productos = await managerUsuarios.getProducts(limit);
-        res.send(productos);
-        res.status(500).send('Error interno del servidor');
+        let limit = parseInt(req.query.limit);
+        const productParseados = await productosLeidos;
+        const globalLimit = productParseados.slice(0,limit);
+        if(globalLimit){
+            res.send(globalLimit);
+        }else{
+            res.status(500).send('Error interno del servidor');
+        }
     
 });
 
 
-
-/* app.get('/usaurio/:userId', ((req, res) => {
-    let user = req.params.id
-        users.find((user)=> user.id === userId)
-    
-    let data = personas.find(user) => (user.id === userId)
-    console.log(user.id)  
-    res.sendFile(user)
-})) */
 app.get('/products/:id', async (req, res) => {
-    const productos = req.params.id; // Convertir el ID a número
-    const data = await managerUsuarios.getProductById((hg) => hg.id == productos);
-    if (data) {
-        res.json(data);
+    let id = parseInt(req.params.id);
+    const productParseados = await productosLeidos;
+    const productById = productParseados.find(product => product.id === id);
+
+    if (productById) {
+        res.json(productById);
     } else {
         res.status(404).send('Usuario no encontrado');
     }
