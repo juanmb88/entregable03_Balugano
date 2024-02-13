@@ -1,5 +1,4 @@
-Falta metodo obtener por id y que me tome los limites el metoddo mostrar productos.
-
+Trabajo finalizado
 ## Servidor
 archivo :  app.js
 
