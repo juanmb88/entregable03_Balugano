@@ -10,13 +10,25 @@ export const __dirname = dirname(__filename);
 //middlewares 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
 //Escucha del servidor
 app.listen(puerto, () => console.log('Servidor andando en puesto ', puerto));
 
 const managerUsuarios = new ManagerUsuarios();
 const productosLeidos = managerUsuarios.getProducts();
 
-// /////////////ENDPOINT PARA VER PRODUCTOS///////////
+// /////////////ENDPOINT PARA VER PRODUCTOS TOTAL///////////////
+app.get('/', async (req, res) => {
+
+    const productParseados = await productosLeidos;
+    if(productParseados){
+        res.send(productParseados);
+    }else{
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+// /////////////ENDPOINT PARA VER PRODUCTOS CON LIMITE///////////
 app.get('/products', async (req, res) => {
 
         let limit = parseInt(req.query.limit);
@@ -27,10 +39,9 @@ app.get('/products', async (req, res) => {
         }else{
             res.status(500).send('Error interno del servidor');
         }
-    
 });
 
-
+// /////////////ENDPOINT PARA VER PRODUCTOS POR ID//////////////
 app.get('/products/:id', async (req, res) => {
     let id = parseInt(req.params.id);
     const productParseados = await productosLeidos;
