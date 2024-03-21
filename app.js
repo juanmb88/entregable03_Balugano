@@ -30,8 +30,8 @@ app.get('/', async (req, res) => {
 
 // /////////////ENDPOINT PARA VER PRODUCTOS CON LIMITE///////////
 app.get('/products', async (req, res) => {
-
-        let limit = parseInt(req.query.limit);
+        //let skipping =parseInt( req.query.skip);//se agrega skipp quie establece desde donde
+        let limit = parseInt(req.query.limit);//se marca un limite
         const productParseados = await productosLeidos;
         const globalLimit = productParseados.slice(0,limit);
         if(globalLimit){
